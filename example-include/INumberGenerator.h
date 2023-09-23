@@ -3,8 +3,6 @@
 #include "IItem.h"
 #include <memory>
 
-typedef std::shared_ptr<IItem> ItemPtr;
-
 class INumberGenerator
 {
 public:

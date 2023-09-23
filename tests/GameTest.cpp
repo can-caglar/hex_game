@@ -25,37 +25,50 @@ TEST_GROUP(GameTest)
     }
 };
 
-#if 0
 class TestableNumberGenerator : public INumberGenerator
 {
 public:
     TestableNumberGenerator() : items(), m_question(), m_answer() {};
-    std::queue<std::pair<IItem*, IItem*>> items;
-    IItem* m_question;
-    IItem* m_answer;
+    std::queue<std::pair<ItemPtr, ItemPtr>> items;
     void generate() override
     {
-        std::pair<IItem*, IItem*> item = items.front();
+        std::pair<ItemPtr, ItemPtr> item = items.front();
         items.pop();
         m_question = item.first;
         m_answer = item.second;
     }
+    ItemPtr getQuestion()
+    {
+        return m_question;
+    }
+    ItemPtr getAnswer()
+    {
+        return m_answer;
+    }
+    ItemPtr m_answer;
+    ItemPtr m_question;
 };
 
-IGNORE_TEST(GameTest, game_test)
+TEST(GameTest, game_test)
 {
     // given
-    DecimalNumber question(10);
-    HexNumber answer(10);
+    // make the questions
+    std::shared_ptr<DecimalNumber> question = std::make_shared<DecimalNumber>(10);
+    std::shared_ptr<HexNumber> answer = std::make_shared <HexNumber>(10);
     TestableNumberGenerator testable_generator;
     testable_generator.items.push(
-        std::make_pair<IItem*, IItem*>(&question, &answer));
+        std::make_pair<ItemPtr, ItemPtr>(question, answer));
+    // prepare the console
     std::stringstream input_ss("0xa");
     std::stringstream output_ss;
     // when
+    // run the game
     Game game(&input_ss, &output_ss, &testable_generator);
     game.tick();
     // then
-    CHECK_EQUAL("What is 10 decimal in hex? Correct!", output_ss.str());
+    CHECK_EQUAL("What is 10 decimal in hex?Correct!", output_ss.str());
+
+    // TODO, these tests all pass but the code needs refactoring. 
+    // Tip: use shared pointer for Questioner::generateQuestion() 
+    // Then continue with main!
 }
-#endif

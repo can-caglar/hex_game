@@ -6,8 +6,10 @@
 
 #include "CppUTest/CommandLineTestRunner.h"
 
+#if 1
 int main(int ac, char** av)
 {
     return CommandLineTestRunner::RunAllTests(ac, av);
 }
+#endif
 

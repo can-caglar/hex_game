@@ -7,7 +7,7 @@ void Game::tick()
 	m_gen->generate();
 
 	// Generate the string
-	std::string q = m_questioner.generateQuestion(m_gen->m_question, m_gen->m_answer);
+	std::string q = m_questioner.generateQuestion(m_gen->getQuestion().get(), m_gen->getAnswer().get());
 
 	// Write it out
 	*m_os << q;
