@@ -25,9 +25,27 @@ ItemPtr QuestionGenerator::getAnswer()
 void QuestionGenerator::generate()
 {
 	int ans = m_rng->getRandomNum() % TYPES_COUNT;
-	int question = m_rng->getRandomNum() % TYPES_COUNT;
-	int num = m_rng->getRandomNum() % (MAX_NUM + 1);
-
+	int question = ans;
+	// get a unique question
+	while (question == ans)
+	{
+		question = m_rng->getRandomNum() % TYPES_COUNT;
+	}
+	int num = m_rng->getRandomNum();
+	// get a suitable answer
+	if ((((ans == HEX) && (question == DECIMAL)) ||
+		((ans == DECIMAL) && (question == HEX))) &&
+		(num < 0xA))
+	{
+		// between 10 and 15
+		num %= 6;
+		num += 10;
+	}
+	else
+	{
+		// between 0 and 15
+		num %= (MAX_NUM + 1);
+	}
 	m_answer = generate(ans, num);
 	m_question = generate(question, num);
 }

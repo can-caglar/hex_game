@@ -88,6 +88,7 @@ TEST(QuestionGeneratorTests, rng_returns_answer_then_question_then_number)
     CHECK_EQUAL("0xA", question->getString());
 }
 
+
 TEST(QuestionGeneratorTests, rng_value_larger_will_get_modulo_applied)
 {
     testRNG->toReturn(TYPES_COUNT + HEX);       // answer hex
@@ -104,6 +105,45 @@ TEST(QuestionGeneratorTests, rng_value_larger_will_get_modulo_applied)
     CHECK_EQUAL("0xF", answer->getString());
     CHECK_EQUAL("decimal", question->getBaseString());
     CHECK_EQUAL("15", question->getString());
+}
+
+TEST(QuestionGeneratorTests, if_its_between_hex_and_dec_num_must_be_greater_than_9)
+{
+    testRNG->toReturn(HEX);       // answer hex
+    testRNG->toReturn(DECIMAL);   // question decimal
+    testRNG->toReturn(6);         // less than 10. This'll be converted
+                                  // to being between 10 - 15 (6%6 + 10)
+    QuestionGenerator g(testRNG);
+
+    g.generate();
+
+    ItemPtr answer = g.getAnswer();
+    ItemPtr question = g.getQuestion();
+
+    CHECK_EQUAL("hex", answer->getBaseString());
+    CHECK_EQUAL("0xA", answer->getString());
+    CHECK_EQUAL("decimal", question->getBaseString());
+    CHECK_EQUAL("10", question->getString());
+}
+
+TEST(QuestionGeneratorTests, rng_returns_same_number_for_types)
+{
+    testRNG->toReturn(HEX);       // answer hex
+    testRNG->toReturn(HEX);       // roll again 
+    testRNG->toReturn(HEX);       // ...
+    testRNG->toReturn(DECIMAL);   // until not the same
+    testRNG->toReturn(13);
+
+    QuestionGenerator g(testRNG);
+    g.generate();
+
+    ItemPtr answer = g.getAnswer();
+    ItemPtr question = g.getQuestion();
+
+    CHECK_EQUAL("hex", answer->getBaseString());
+    CHECK_EQUAL("0xD", answer->getString());
+    CHECK_EQUAL("decimal", question->getBaseString());
+    CHECK_EQUAL("13", question->getString());
 }
 
 
