@@ -16,5 +16,5 @@ std::string HexNumber::getString()
 
 std::string HexNumber::getBaseString()
 {
-	return "hex";
+	return num_id_hex;
 }

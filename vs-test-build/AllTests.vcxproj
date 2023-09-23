@@ -138,6 +138,7 @@
     <ClCompile Include="..\tests\HexNumberTest.cpp" />
     <ClCompile Include="..\tests\MyFirstTest.cpp" />
     <ClCompile Include="..\tests\QuestionerTests.cpp" />
+    <ClCompile Include="..\tests\QuestionGeneratorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ProductionCodeLib.vcxproj">

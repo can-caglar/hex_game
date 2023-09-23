@@ -2,6 +2,8 @@
 
 #include "IItem.h"
 
+const std::string num_id_hex = "hex";
+
 class HexNumber : public IItem
 {
 public:

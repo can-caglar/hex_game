@@ -16,6 +16,7 @@
     <ClInclude Include="..\example-include\IItem.h" />
     <ClInclude Include="..\example-include\Number.h" />
     <ClInclude Include="..\example-include\Questioner.h" />
+    <ClInclude Include="..\example-include\QuestionGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\example-include\INumberGenerator.h" />
@@ -23,6 +24,7 @@
     <ClCompile Include="..\example-src\HexNumber.cpp" />
     <ClCompile Include="..\example-src\Number.cpp" />
     <ClCompile Include="..\example-src\Questioner.cpp" />
+    <ClCompile Include="..\example-src\QuestionGenerator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B91444F6-1620-4836-8BDE-05A795A7E772}</ProjectGuid>

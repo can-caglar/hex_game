@@ -25,6 +25,7 @@ TEST_GROUP(GameTest)
     }
 };
 
+#if 0
 class TestableNumberGenerator : public INumberGenerator
 {
 public:
@@ -57,3 +58,4 @@ IGNORE_TEST(GameTest, game_test)
     // then
     CHECK_EQUAL("What is 10 decimal in hex? Correct!", output_ss.str());
 }
+#endif
