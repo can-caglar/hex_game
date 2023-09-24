@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\example-include\BinaryNumber.h" />
+    <ClInclude Include="..\example-include\common.h" />
     <ClInclude Include="..\example-include\Game.h" />
     <ClInclude Include="..\example-include\HexNumber.h" />
     <ClInclude Include="..\example-include\IItem.h" />
@@ -20,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\example-include\INumberGenerator.h" />
+    <ClCompile Include="..\example-src\BinaryNumber.cpp" />
     <ClCompile Include="..\example-src\Game.cpp" />
     <ClCompile Include="..\example-src\HexNumber.cpp" />
     <ClCompile Include="..\example-src\Number.cpp" />

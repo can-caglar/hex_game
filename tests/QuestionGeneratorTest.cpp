@@ -88,6 +88,23 @@ TEST(QuestionGeneratorTests, rng_returns_answer_then_question_then_number)
     CHECK_EQUAL("0xA", question->getString());
 }
 
+TEST(QuestionGeneratorTests, testing_hex_answer_and_decimal_question)
+{
+    testRNG->toReturn(HEX);       // answer hex
+    testRNG->toReturn(DECIMAL);   // question decimal
+    testRNG->toReturn(0xB);
+    QuestionGenerator g(testRNG);
+
+    g.generate();
+
+    ItemPtr answer = g.getAnswer();
+    ItemPtr question = g.getQuestion();
+
+    CHECK_EQUAL("hex", answer->getBaseString());
+    CHECK_EQUAL("0xB", answer->getString());
+    CHECK_EQUAL("decimal", question->getBaseString());
+    CHECK_EQUAL("11", question->getString());
+}
 
 TEST(QuestionGeneratorTests, rng_value_larger_will_get_modulo_applied)
 {
@@ -126,6 +143,25 @@ TEST(QuestionGeneratorTests, if_its_between_hex_and_dec_num_must_be_greater_than
     CHECK_EQUAL("10", question->getString());
 }
 
+TEST(QuestionGeneratorTests, if_its_between_hex_and_dec_num_must_be_greater_than_9_modulo_applied)
+{
+    testRNG->toReturn(HEX);             // answer hex
+    testRNG->toReturn(DECIMAL);         // question decimal
+    testRNG->toReturn(6 + 16);          // more than 15. This'll be converted
+    // to being between 10 - 15 (6%6 + 10)
+    QuestionGenerator g(testRNG);
+
+    g.generate();
+
+    ItemPtr answer = g.getAnswer();
+    ItemPtr question = g.getQuestion();
+
+    CHECK_EQUAL("hex", answer->getBaseString());
+    CHECK_EQUAL("0xA", answer->getString());
+    CHECK_EQUAL("decimal", question->getBaseString());
+    CHECK_EQUAL("10", question->getString());
+}
+
 TEST(QuestionGeneratorTests, rng_returns_same_number_for_types)
 {
     testRNG->toReturn(HEX);       // answer hex
@@ -146,6 +182,23 @@ TEST(QuestionGeneratorTests, rng_returns_same_number_for_types)
     CHECK_EQUAL("13", question->getString());
 }
 
+TEST(QuestionGeneratorTests, rng_value_larger_than_max_but_yield_same_modulus)
+{
+    testRNG->toReturn(TYPES_COUNT + HEX);         // answer hex
+    testRNG->toReturn(TYPES_COUNT + (HEX * 2));   // question also hex, but a diff num
+    testRNG->toReturn(0xF);
+    QuestionGenerator g(testRNG);
+
+    g.generate();
+
+    ItemPtr answer = g.getAnswer();
+    ItemPtr question = g.getQuestion();
+
+    CHECK_EQUAL("hex", answer->getBaseString());
+    CHECK_EQUAL("0xF", answer->getString());
+    CHECK_EQUAL("decimal", question->getBaseString());
+    CHECK_EQUAL("15", question->getString());
+}
 
 IGNORE_TEST(QuestionGeneratorTests, to_test_binary)
 {

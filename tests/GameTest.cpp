@@ -66,9 +66,8 @@ TEST(GameTest, game_test)
     Game game(&input_ss, &output_ss, &testable_generator);
     game.tick();
     // then
-    CHECK_EQUAL("What is 10 decimal in hex?Correct!", output_ss.str());
+    CHECK_EQUAL("What is 10 decimal in hex?\nCorrect!\n", output_ss.str());
 
     // TODO, these tests all pass but the code needs refactoring. 
-    // Tip: use shared pointer for Questioner::generateQuestion() 
     // Then continue with main!
 }

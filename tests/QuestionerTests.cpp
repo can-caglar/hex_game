@@ -30,7 +30,7 @@ TEST(QuestionerTests, decimal_to_decimal_question)
     
     std::string question_string = questioner.generateQuestion(question, answer);
 
-    CHECK_EQUAL("What is 10 decimal in decimal?", question_string);
+    CHECK_EQUAL("What is 10 decimal in decimal?\n", question_string);
 }
 
 TEST(QuestionerTests, decimal_to_hexadecimal_question)
@@ -42,7 +42,7 @@ TEST(QuestionerTests, decimal_to_hexadecimal_question)
 
     std::string question_string = questioner.generateQuestion(question, answer);
 
-    CHECK_EQUAL("What is 10 decimal in hex?", question_string);
+    CHECK_EQUAL("What is 10 decimal in hex?\n", question_string);
 }
 
 TEST(QuestionerTests, hexadecimal_to_decimal_question)
@@ -54,7 +54,7 @@ TEST(QuestionerTests, hexadecimal_to_decimal_question)
 
     std::string question_string = questioner.generateQuestion(question, answer);
 
-    CHECK_EQUAL("What is 0xA hex in decimal?", question_string);
+    CHECK_EQUAL("What is 0xA hex in decimal?\n", question_string);
 }
 
 TEST(QuestionerTests, generate_response_correct_answer)
@@ -66,7 +66,7 @@ TEST(QuestionerTests, generate_response_correct_answer)
     std::string question_string = questioner.generateQuestion(question, answer);
 
     std::string ans("10");
-    CHECK_EQUAL("Correct!", questioner.generateResponseTo(ans));
+    CHECK_EQUAL("Correct!\n", questioner.generateResponseTo(ans));
 }
 
 
@@ -79,5 +79,5 @@ TEST(QuestionerTests, generate_response_wrong_answer)
     std::string question_string = questioner.generateQuestion(question, answer);
 
     std::string ans("9");
-    CHECK_EQUAL("Wrong! 0xA in decimal is 10.", questioner.generateResponseTo(ans));
+    CHECK_EQUAL("Wrong! 0xA in decimal is 10.\n", questioner.generateResponseTo(ans));
 }

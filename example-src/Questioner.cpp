@@ -9,7 +9,7 @@ std::string Questioner::generateQuestion(ItemPtr q, ItemPtr a)
         " " +
         q->getBaseString() +
         " in " + a->getBaseString() +
-        "?";
+        "?\n";
 
     return ret;
 }
@@ -18,7 +18,7 @@ std::string Questioner::generateResponseTo(std::string ansStr)
 {
     if (m_Ans->isItEquivalent(ansStr))
     {
-        return "Correct!";
+        return "Correct!\n";
     }
     else
     {
@@ -28,6 +28,6 @@ std::string Questioner::generateResponseTo(std::string ansStr)
             m_Ans->getBaseString() +
             " is " +
             m_Ans->getString() +
-            ".";
+            ".\n";
     }
 }

@@ -2,21 +2,27 @@
 #include <memory>
 #include "Game.h"
 #include "QuestionGenerator.h"
+#include "common.h"
+#include <random>
 
 class MyRNG : public IRNG
 {
 public:
 	int getRandomNum() override
 	{
-		return 5;
+		std::mt19937 rng(std::random_device{}());
+		std::uniform_int_distribution<int> dist(1, 100);
+		int random_num = dist(rng);
+		std::cout << "rng = " << random_num << std::endl;
+		return random_num;
 	}
 };
 
-#if 0
+#ifdef RUN_MY_MAIN
 int main()
 {
-	QuestionGenerator questionGenerator(std::make_shared<IRNG>());
-	Game game(&std::cin, &std::cout, questionGenerator);
+	QuestionGenerator questionGenerator(std::make_shared<MyRNG>());
+	Game game(&std::cin, &std::cout, &questionGenerator);
 	while (1)
 	{
 		game.tick();

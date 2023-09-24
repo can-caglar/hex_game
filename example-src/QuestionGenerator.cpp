@@ -1,6 +1,7 @@
 #include "QuestionGenerator.h"
 #include "Number.h"
 #include "HexNumber.h"
+#include "BinaryNumber.h"
 
 enum Types
 {
@@ -31,7 +32,8 @@ void QuestionGenerator::generate()
 	{
 		question = m_rng->getRandomNum() % TYPES_COUNT;
 	}
-	int num = m_rng->getRandomNum();
+	// get a number between 0 and 15
+	int num = m_rng->getRandomNum() % (MAX_NUM + 1);
 	// get a suitable answer
 	if ((((ans == HEX) && (question == DECIMAL)) ||
 		((ans == DECIMAL) && (question == HEX))) &&
@@ -40,11 +42,6 @@ void QuestionGenerator::generate()
 		// between 10 and 15
 		num %= 6;
 		num += 10;
-	}
-	else
-	{
-		// between 0 and 15
-		num %= (MAX_NUM + 1);
 	}
 	m_answer = generate(ans, num);
 	m_question = generate(question, num);
@@ -56,6 +53,8 @@ ItemPtr QuestionGenerator::generate(int item, int num)
 	switch (item)
 	{
 	case BINARY:
+		ret = std::make_shared<BinaryNumber>(num);
+		break;
 	case DECIMAL:
 		ret = std::make_shared<DecimalNumber>(num);
 		break;
