@@ -18,10 +18,12 @@ std::string Questioner::generateResponseTo(std::string ansStr)
 {
     if (m_Ans->isItEquivalent(ansStr))
     {
+        ++m_correctAnswers;
         return "Correct!\n";
     }
     else
     {
+        ++m_wrongAnswers;
         return "Wrong! " +
             m_Question->getString() +
             " in " +

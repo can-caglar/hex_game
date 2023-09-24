@@ -13,7 +13,6 @@ public:
 		std::mt19937 rng(std::random_device{}());
 		std::uniform_int_distribution<int> dist(1, 100);
 		int random_num = dist(rng);
-		std::cout << "rng = " << random_num << std::endl;
 		return random_num;
 	}
 };

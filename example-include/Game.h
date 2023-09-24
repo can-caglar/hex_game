@@ -9,12 +9,14 @@ class Game
 {
 public:
 	Game(std::istream* is, std::ostream* os,
-		INumberGenerator* gen) : 
-		m_is { is },
-		m_os { os },
+		INumberGenerator* gen) :
+		m_is{ is },
+		m_os{ os },
 		m_gen{ gen },
 		m_questioner() {}
 	void tick();
+	int correctAnswers();
+	int wrongAnswers();
 private:
 	std::istream* m_is;
 	std::ostream* m_os;

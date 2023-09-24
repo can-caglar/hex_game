@@ -67,7 +67,33 @@ TEST(GameTest, game_test)
     game.tick();
     // then
     CHECK_EQUAL("What is 10 decimal in hex?\nCorrect!\n", output_ss.str());
+}
 
-    // TODO, these tests all pass but the code needs refactoring. 
-    // Then continue with main!
+TEST(GameTest, game_score_can_be_ascertained)
+{
+    // given
+    // make the questions
+    std::shared_ptr<DecimalNumber> question = std::make_shared<DecimalNumber>(10);
+    std::shared_ptr<HexNumber> answer = std::make_shared <HexNumber>(10);
+    TestableNumberGenerator testable_generator;
+    testable_generator.items.push(
+        std::make_pair<ItemPtr, ItemPtr>(question, answer));
+    testable_generator.items.push(
+        std::make_pair<ItemPtr, ItemPtr>(question, answer));
+    testable_generator.items.push(
+        std::make_pair<ItemPtr, ItemPtr>(question, answer));
+    // prepare the console
+    std::stringstream input_ss("0xa 0xb 0xb");
+    std::stringstream output_ss;
+    Game game(&input_ss, &output_ss, &testable_generator);
+    CHECK_EQUAL(0, game.correctAnswers());
+    CHECK_EQUAL(0, game.wrongAnswers());
+    // when
+    // run the game
+    game.tick();
+    game.tick();
+    game.tick();
+    // then
+    CHECK_EQUAL(1, game.correctAnswers());
+    CHECK_EQUAL(2, game.wrongAnswers());
 }

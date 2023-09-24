@@ -20,3 +20,13 @@ void Game::tick()
 
 	*m_os << response;
 }
+
+int Game::correctAnswers()
+{
+	return m_questioner.correctAnswers();
+}
+
+int Game::wrongAnswers()
+{
+	return m_questioner.wrongAnswers();
+}
