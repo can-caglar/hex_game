@@ -1,6 +1,6 @@
 #include "Questioner.h"
 
-std::string Questioner::generateQuestion(IItem* q, IItem* a)
+std::string Questioner::generateQuestion(ItemPtr q, ItemPtr a)
 {
     m_Question = q;
     m_Ans = a;
