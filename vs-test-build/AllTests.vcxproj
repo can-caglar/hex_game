@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="..\tests\AllTests.cpp" />
     <ClCompile Include="..\tests\BinaryNumberTest.cpp" />
+    <ClCompile Include="..\tests\GameMasterTest.cpp" />
     <ClCompile Include="..\tests\GameTest.cpp" />
     <ClCompile Include="..\tests\HexNumberTest.cpp" />
     <ClCompile Include="..\tests\MyFirstTest.cpp" />

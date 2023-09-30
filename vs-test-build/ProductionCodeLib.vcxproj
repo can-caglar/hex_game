@@ -14,7 +14,9 @@
     <ClInclude Include="..\example-include\BinaryNumber.h" />
     <ClInclude Include="..\example-include\common.h" />
     <ClInclude Include="..\example-include\Game.h" />
+    <ClInclude Include="..\example-include\GameWithTime.h" />
     <ClInclude Include="..\example-include\HexNumber.h" />
+    <ClInclude Include="..\example-include\IGameClock.h" />
     <ClInclude Include="..\example-include\IItem.h" />
     <ClInclude Include="..\example-include\Number.h" />
     <ClInclude Include="..\example-include\Questioner.h" />
@@ -24,6 +26,7 @@
     <ClCompile Include="..\example-include\INumberGenerator.h" />
     <ClCompile Include="..\example-src\BinaryNumber.cpp" />
     <ClCompile Include="..\example-src\Game.cpp" />
+    <ClCompile Include="..\example-src\GameWithTime.cpp" />
     <ClCompile Include="..\example-src\HexNumber.cpp" />
     <ClCompile Include="..\example-src\Number.cpp" />
     <ClCompile Include="..\example-src\Questioner.cpp" />

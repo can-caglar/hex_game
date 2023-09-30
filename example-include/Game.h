@@ -5,7 +5,15 @@
 #include "INumberGenerator.h"
 #include "Questioner.h"
 
-class Game
+class IGame
+{
+public:
+	virtual void tick() = 0;
+	virtual int correctAnswers() = 0;
+	virtual int wrongAnswers() = 0;
+};
+
+class Game : public IGame
 {
 public:
 	Game(std::istream* is, std::ostream* os,
@@ -14,9 +22,9 @@ public:
 		m_os{ os },
 		m_gen{ gen },
 		m_questioner() {}
-	void tick();
-	int correctAnswers();
-	int wrongAnswers();
+	void tick() override;
+	int correctAnswers() override;
+	int wrongAnswers() override;
 private:
 	std::istream* m_is;
 	std::ostream* m_os;
