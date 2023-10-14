@@ -27,7 +27,6 @@ testResults
 .metadata
 Debug
 */Debug/*
-*.exe
 *.obj
 *.ncb
 *.opt
