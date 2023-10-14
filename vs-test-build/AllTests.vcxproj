@@ -138,6 +138,7 @@
     <ClCompile Include="..\tests\GameMasterTest.cpp" />
     <ClCompile Include="..\tests\GameTest.cpp" />
     <ClCompile Include="..\tests\HexNumberTest.cpp" />
+    <ClCompile Include="..\tests\HighscoreTests.cpp" />
     <ClCompile Include="..\tests\MyFirstTest.cpp" />
     <ClCompile Include="..\tests\my_main.cpp" />
     <ClCompile Include="..\tests\QuestionerTests.cpp" />
