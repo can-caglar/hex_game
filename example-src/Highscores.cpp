@@ -1,5 +1,7 @@
 #include "Highscores.h"
 
+const uint32_t Highscores::maxScore = 12;
+
 void Highscores::add(const HighscoreEntry& entry)
 {
     m_highscores.insert(entry);
@@ -7,7 +9,8 @@ void Highscores::add(const HighscoreEntry& entry)
 
 uint32_t Highscores::size()
 {
-    return m_highscores.size();
+    return (m_highscores.size() <= Highscores::maxScore) ?
+        m_highscores.size() : Highscores::maxScore;
 }
 
 const HighscoreEntry& Highscores::get(uint32_t index)
@@ -29,6 +32,10 @@ void Highscores::save()
                           std::to_string(hs.score) +
                           " " +
                           hs.timestamp;
+        if (m_encryptor)
+        {
+            str = m_encryptor->encrypt(str);
+        }
         m_dataStorage->writeLine(str);
     }
 }

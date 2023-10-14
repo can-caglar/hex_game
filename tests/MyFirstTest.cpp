@@ -47,3 +47,8 @@ TEST(DecimalNumberTest, decimal_number_base)
     CHECK_EQUAL("decimal", number.getBaseString());
 }
 
+TEST(DecimalNumberTest, handles_bad_input_gracefully)
+{
+    DecimalNumber number(7);
+    CHECK_EQUAL(false, number.isItEquivalent("z"));
+}

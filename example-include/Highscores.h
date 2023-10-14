@@ -13,6 +13,13 @@ public:
     virtual std::string readLine() = 0;
 };
 
+class IEncryptor
+{
+public:
+    virtual std::string encrypt(std::string line) = 0;
+    virtual std::string decrypt(std::string line) = 0;
+};
+
 struct HighscoreEntry
 {
     std::string name;
@@ -25,27 +32,35 @@ struct HighscoreEntry
 };
 
 typedef std::shared_ptr<IDataStorage> IDataStoragePtr;
+typedef std::shared_ptr<IEncryptor> IEncryptorPtr;
 
 class Highscores
 {
 public:
-    Highscores(IDataStoragePtr ds) : m_dataStorage(ds)
+    Highscores(IDataStoragePtr ds, IEncryptorPtr encryptor = nullptr) : m_dataStorage(ds), m_encryptor(encryptor)
     {
         HighscoreEntry newEntry;
-        std::istringstream iss;
-        iss.str(ds->readLine());
-        if (iss.str().size() > 0)
+        std::string line;
+        while ((line = ds->readLine()) != "")
         {
-            std::string str;
-            iss >> str; // name
-            newEntry.name = str;
-            iss.get();  // ignore space
-            iss >> str;
-            newEntry.score = std::atol(str.c_str());
-            iss.get();  //ignore space
-            iss >> str;
-            newEntry.timestamp = str;
-            m_highscores.insert(newEntry);
+            if (m_encryptor)
+            {
+                line = m_encryptor->decrypt(line);
+            }
+            std::istringstream iss(line);
+            if (iss.str().size() > 0)
+            {
+                std::string str;
+                iss >> str; // name
+                newEntry.name = str;
+                iss.get();  // ignore space
+                iss >> str;
+                newEntry.score = std::atol(str.c_str());
+                iss.get();  //ignore space
+                iss >> str;
+                newEntry.timestamp = str;
+                m_highscores.insert(newEntry);
+            }
         }
     };
     void add(const HighscoreEntry& entry);
@@ -54,6 +69,7 @@ public:
     void save();
 protected:
     IDataStoragePtr m_dataStorage;
-    //std::vector<HighscoreEntry> m_highscores;
+    IEncryptorPtr m_encryptor;
     std::multiset<HighscoreEntry, std::greater<HighscoreEntry>> m_highscores;
+    static const uint32_t maxScore;
 };

@@ -51,3 +51,9 @@ TEST(HexNumberTest, number_string_has_0x_in_front_and_is_capitalised)
     CHECK_EQUAL("0xD", hex13.getString());
     CHECK_EQUAL("0x2", hex2.getString());
 }
+
+TEST(HexNumberTest, handles_bad_input_gracefully)
+{
+    HexNumber hex(2);
+    CHECK_EQUAL(false, hex.isItEquivalent("z"));
+}

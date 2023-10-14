@@ -42,5 +42,8 @@ TEST(BinaryNumberTest, get_type)
     CHECK_EQUAL("binary", BinaryNumber(9).getBaseString());
 }
 
-
-// Todo, try with invalid arguments
+TEST(BinaryNumberTest, handles_bad_input_gracefully)
+{
+    BinaryNumber number(7);
+    CHECK_EQUAL(false, number.isItEquivalent("2"));
+}

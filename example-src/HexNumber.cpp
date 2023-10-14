@@ -3,7 +3,15 @@
 
 bool HexNumber::isItEquivalent(std::string val)
 {
-	int a = std::stoi(val, nullptr, 16);
+	int a;
+	try
+	{
+		a = std::stoi(val, nullptr, 16);
+	}
+	catch (...)
+	{
+		return false;
+	}
 	return a == m_num;
 }
 

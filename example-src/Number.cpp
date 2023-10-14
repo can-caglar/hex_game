@@ -2,7 +2,15 @@
 
 bool DecimalNumber::isItEquivalent(std::string str)
 {
-    double num = std::stof(str);
+    double num;
+    try
+    {
+        num = std::stof(str);
+    }
+    catch (...)
+    {
+        return false;
+    }
     return num == m_num;
 }
 

@@ -13,12 +13,14 @@
   <ItemGroup>
     <ClInclude Include="..\example-include\BinaryNumber.h" />
     <ClInclude Include="..\example-include\common.h" />
+    <ClInclude Include="..\example-include\FileStorage.h" />
     <ClInclude Include="..\example-include\Game.h" />
     <ClInclude Include="..\example-include\GameWithTime.h" />
     <ClInclude Include="..\example-include\HexNumber.h" />
     <ClInclude Include="..\example-include\Highscores.h" />
     <ClInclude Include="..\example-include\IGameClock.h" />
     <ClInclude Include="..\example-include\IItem.h" />
+    <ClInclude Include="..\example-include\MyEncryptor.h" />
     <ClInclude Include="..\example-include\Number.h" />
     <ClInclude Include="..\example-include\Questioner.h" />
     <ClInclude Include="..\example-include\QuestionGenerator.h" />
@@ -30,6 +32,7 @@
     <ClCompile Include="..\example-src\GameWithTime.cpp" />
     <ClCompile Include="..\example-src\HexNumber.cpp" />
     <ClCompile Include="..\example-src\Highscores.cpp" />
+    <ClCompile Include="..\example-src\MyEncryptor.cpp" />
     <ClCompile Include="..\example-src\Number.cpp" />
     <ClCompile Include="..\example-src\Questioner.cpp" />
     <ClCompile Include="..\example-src\QuestionGenerator.cpp" />

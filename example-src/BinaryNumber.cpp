@@ -3,8 +3,16 @@
 
 bool BinaryNumber::isItEquivalent(std::string val)
 {
-	std::bitset<32> bitset(val);
-	int num = static_cast<int>(bitset.to_ulong());
+	int num;
+	try
+	{
+		std::bitset<32> bitset(val);
+		num = static_cast<int>(bitset.to_ulong());
+	}
+	catch (...)
+	{
+		return false;
+	}
 	return num == m_num;
 }
 std::string BinaryNumber::getString()
